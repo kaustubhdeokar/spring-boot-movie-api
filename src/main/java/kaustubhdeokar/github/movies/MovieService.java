@@ -1,7 +1,6 @@
 package kaustubhdeokar.github.movies;
 
 import jakarta.annotation.Nullable;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,14 +18,19 @@ public class MovieService {
     }
 
     @Nullable
-    public Movie getMovieById(ObjectId id) {
-        Optional<Movie> byId = movieRepository.findById(id);
+//    public Movie getMovieById(ObjectId id) {
+//        Optional<Movie> byId = movieRepository.findById(id);
+//        return byId.orElse(null);
+//    }
+
+    public Movie getMovieByImdbId(String id) {
+        Optional<Movie> byId = movieRepository.findMovieByImdbId(id);
         return byId.orElse(null);
     }
 
-    public Movie getMovieByImdbId(String id) {
-        Optional<Movie> movieByImdbId = movieRepository.findMovieByImdbId(id);
-        return movieByImdbId.orElse(null);
-    }
+//    public Movie getMovieByImdbId(String id) {
+//        Optional<Movie> movieByImdbId = movieRepository.findMovieByImdbId(id);
+//        return movieByImdbId.orElse(null);
+//    }
 
 }

@@ -18,22 +18,22 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<Movie>> getAllMovies() {
         return new ResponseEntity<>(movieService.allMovies(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Movie> getMovieById(@PathVariable ObjectId id) {
-        Movie movieById = movieService.getMovieById(id);
+    @GetMapping("/{imdbId}")
+    public ResponseEntity<Movie> getMovieById(@PathVariable String imdbId) {
+        Movie movieById = movieService.getMovieByImdbId(imdbId);
         return createResponseForMovie(movieById);
     }
 
-    @GetMapping("/imdb/{id}")
-    public ResponseEntity<Movie> getMovieByImdbId(@PathVariable String id){
-        Movie movieByImdbId = movieService.getMovieByImdbId(id);
-        return createResponseForMovie(movieByImdbId);
-    }
+//    @GetMapping("/imdb/{id}")
+//    public ResponseEntity<Movie> getMovieByImdbId(@PathVariable String id){
+//        Movie movieByImdbId = movieService.getMovieByImdbId(id);
+//        return createResponseForMovie(movieByImdbId);
+//    }
 
     private static ResponseEntity<Movie> createResponseForMovie(Movie movieById) {
         if (movieById == null) {
